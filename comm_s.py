@@ -23,5 +23,3 @@ def listen_to_master(port):
     s.close()
     return
  
-port = send_message_to_master()
-listen_to_master(port)
