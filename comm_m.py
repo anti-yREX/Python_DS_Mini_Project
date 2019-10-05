@@ -1,7 +1,7 @@
 import socket
-def send_message_to_slave(msg, port):
+def send_message_to_slave(msg, addr):
     s = socket.socket()
-    s.connect(('127.0.0.1' , port))
+    s.connect((addr))
     print("Sending msg...")
     s.send(msg.encode())
     s.close()
