@@ -1,5 +1,5 @@
 import comm_m
-
+from time import  gmtime
 #1 Listen to all the Joining Slaves
 #2 Log Slaves
 #3 Divide the Work for the slaves
@@ -11,16 +11,21 @@ import comm_m
 #1 Listen to all the Joining Slaves
 log = []
 bool  = True
-c = 3
+n = 3
 while bool==True:
     log.append(comm_m.listen_to_slave())
-    c -= 1
-    if c == 0:
+    n -= 1
+    if n == 0:
         bool = False
 #2 Log Slaves
 print(log)
 
-#Experiment
+#3  Divide the Work for the Slaves
+c_tm = gmtime()
+c_tm = (tm[4],tm[5])
+print(tm)
+
+#4  Command the Slaves
 for x in log:
     print("Replying "+str(x))
     msg = "Hello " + str(x[1])

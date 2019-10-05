@@ -18,8 +18,7 @@ def listen_to_master(addrs):
     c, addr = s.accept()
     print("Connected to : ",addr)
     data = c.recv(1024).decode('utf8')
-    #Execute according to data
     c.close()
     s.close()
-    return
+    return data
  

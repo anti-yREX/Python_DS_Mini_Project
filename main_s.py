@@ -11,5 +11,11 @@ import comm_s
 #1 Join the master - Login
 addr = comm_s.send_message_to_master()
 
-#Checking back
-comm_s.listen_to_master(addr)
+#2 Recieve the command
+msg = comm_s.listen_to_master(addr)
+
+#3 Execute the command
+
+#4 Return the Result
+
+#5 Log out
