@@ -9,6 +9,7 @@ import comm_s
 
 
 #1 Join the master - Login
-port = comm_s.send_message_to_master()
+addr = comm_s.send_message_to_master()
+
 #Checking back
-comm_s.listen_to_master(port)
+comm_s.listen_to_master(addr)

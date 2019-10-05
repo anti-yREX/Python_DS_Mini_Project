@@ -24,4 +24,4 @@ print(log)
 for x in log:
     print("Replying "+str(x))
     msg = "Hello " + str(x[1])
-    comm_m.send_message_to_slave(msg, x[1])
+    comm_m.send_message_to_slave(msg, x)
