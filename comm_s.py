@@ -5,12 +5,12 @@ def send_message_to_master():
     s.connect(('127.0.0.1' , port))
     data = s.recv(1024).decode('utf8')
     print(data)
+    addr = s.getsockname()
     s.close()
-    return
+    return addr[1]
 
-def listen_to_master():
+def listen_to_master(port):
     s = socket.socket()
-    port = 8089
     s.bind(('',port))
     print("Socket is binded to ",port)
     s.listen(5)
@@ -23,5 +23,5 @@ def listen_to_master():
     s.close()
     return
  
-send_message_to_master()
-listen_to_master()
+port = send_message_to_master()
+listen_to_master(port)

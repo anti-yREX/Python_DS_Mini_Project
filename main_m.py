@@ -11,7 +11,7 @@ import comm_m
 #1 Listen to all the Joining Slaves
 log = []
 bool  = True
-c = 1
+c = 5
 while bool==True:
     log.append(comm_m.listen_to_slave())
     c -= 1
@@ -24,4 +24,4 @@ print(log)
 for x in log:
     print("Replying "+str(x))
     msg = "Hello " + str(x[1])
-    comm_m.send_message_to_slave(msg)
+    comm_m.send_message_to_slave(msg, x[1])

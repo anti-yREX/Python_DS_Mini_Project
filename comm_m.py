@@ -1,7 +1,6 @@
 import socket
-def send_message_to_slave(msg):
+def send_message_to_slave(msg, port):
     s = socket.socket()
-    port= 8089
     s.connect(('127.0.0.1' , port))
     print("Sending msg...")
     s.send(msg.encode())
