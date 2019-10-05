@@ -1,0 +1,22 @@
+Master.py
+    ->
+    ->
+
+Slave.py
+    ->
+    ->
+
+Play.py
+    ->
+    ->
+
+Screen.py
+    ->
+    ->
+
+
+Flow of System:
+                1 > Master will listen to accept all slave to response
+                2 > All slaves will send requestto join
+                3 > Master will command the slaves to start
+                4 >  
