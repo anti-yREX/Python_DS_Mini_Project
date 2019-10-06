@@ -1,7 +1,6 @@
 import socket
-def send_message_to_master():
+def send_message_to_master(port):
     s = socket.socket()
-    port= 8088
     s.connect(('127.0.0.1' , port))
     data = s.recv(1024).decode('utf8')
     print(data)
