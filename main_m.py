@@ -27,9 +27,11 @@ while bool==True:
     n -= 1
     if n == 0:
         bool = False
-#2 Log Slaves
 
+
+#2 Log Slaves
 print(log)
+
 
 #3  Divide the Work for the Slaves
 msg = []
@@ -49,9 +51,18 @@ print(msg)
 ex_tm = msg[len(msg)-1]
 print("Master : "+str(ex_tm))
 
+
 #4  Command the Slaves
 i=0
 for x in log:
     print("Replying "+str(x))
     comm_m.send_message_to_slave(str(i)+str(msg[i]), x)
     i += 1
+
+#4 Sub Step: Executing Master's work
+
+
+#5  Evaluate the Result
+
+
+#6 Log Slaves Out
