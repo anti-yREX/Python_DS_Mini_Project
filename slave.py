@@ -1,5 +1,6 @@
 import comm_s
 from time import gmtime
+import scrn_s
 
 #1 Join the master - Login
 #2 Recieve the command
@@ -57,22 +58,22 @@ addr = comm_s.send_message_to_master(8088)
 #2 Recieve the command
 msg = comm_s.listen_to_master(addr)
 id = int(msg[0])
+win = scrn_s.initiate(id)
 ex_tm = decode_time(msg)
 print("Slave "+str(id)+" : "+str(ex_tm))
 
 
 #3 Execute the command
 wait_for_time(ex_tm)
-#execute on time
 strt_tm = gmtime()
 strt_tm = [strt_tm[4],strt_tm[5]]
-print("Execute  the Code now")
+scrn_s.animate(win)
 end_tm = gmtime()
 end_tm = [end_tm[4], end_tm[5]]
 
 
 #4 Return the Result
 comm_s.send_result_to_master(str(id)+" "+str(strt_tm)+" "+str(end_tm),('127.0.0.1',8088))
-
+print(str(strt_tm)+" "+str(end_tm))
 
 #5 Log out
