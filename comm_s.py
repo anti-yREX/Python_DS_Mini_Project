@@ -7,19 +7,18 @@ def send_message_to_master():
     print(data)
     addr = s.getsockname()
     s.close()
-    return addr[1]
+    return addr
 
-def listen_to_master(port):
+def listen_to_master(addrs):
     s = socket.socket()
-    s.bind(('',port))
-    print("Socket is binded to ",port)
+    s.bind((addrs))
+    print("Socket is binded to ",addrs[1])
     s.listen(5)
     print("Ther socket  is listening...")
     c, addr = s.accept()
     print("Connected to : ",addr)
     data = c.recv(1024).decode('utf8')
-    print(data)
     c.close()
     s.close()
-    return
+    return data
  
