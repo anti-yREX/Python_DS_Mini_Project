@@ -49,7 +49,7 @@ ex_tm = [0, 5]
 ex_tm = add_time(c_tm,ex_tm)
 print("Command: Slave 0: Start Execution on " + str(ex_tm))
 
-for i in range(1,5):
+for i in range(1,n):
     ex_tm = add_time(ex_tm,[0,11])
     print("Command: Slave "+ str(i) +": Start Execution on "+str(ex_tm))
 
@@ -57,3 +57,24 @@ ex_tm = add_time(ex_tm,[0,11])
 print("Master: Start its on execution "+ str(ex_tm))
 """
 
+"""
+#Experiment: Convert Message to Executable Time
+msg = "[25,26]"
+def decode_time(msg):
+    pos = [-1, -1, -1]
+    for x in range(len(msg)):
+        if msg[x] == '[':            
+            pos[0] = x+1
+            continue
+        if msg[x] == ',':
+            pos[1] = x
+            continue
+        if msg[x] == ']':
+            pos[2] = x
+    min = msg[pos[0]:pos[1]]
+    sec = msg[(pos[1]+1):pos[2]]
+    tm = (int(min) , int(sec))
+    return tm
+tm = decode_time(msg)
+print(tm)
+"""
