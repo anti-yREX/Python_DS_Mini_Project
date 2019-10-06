@@ -59,7 +59,7 @@ for x in log:
     comm_m.send_message_to_slave(str(i)+str(msg[i]), x)
     i += 1
 
-#4 Sub Step: Executing Master's work
+#4 Sub Step: Executing Master's Job
 
 
 #5  Evaluate the Result

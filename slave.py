@@ -24,8 +24,10 @@ def decode_time(msg):
     sec = msg[(pos[1]+1):pos[2]]
     return (int(min) , int(sec))
 
+
 #1 Join the master - Login
 addr = comm_s.send_message_to_master()
+
 
 #2 Recieve the command
 msg = comm_s.listen_to_master(addr)
@@ -33,8 +35,14 @@ id = int(msg[0])
 ex_tm = decode_time(msg)
 print("Slave "+str(id)+" : "+str(ex_tm))
 
+
 #3 Execute the command
+#wait_for_time(ex_tm)
+#execute on time
+#
+
 
 #4 Return the Result
+
 
 #5 Log out
