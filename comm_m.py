@@ -7,9 +7,8 @@ def send_message_to_slave(msg, addr):
     s.close()
     return
 
-def listen_to_slave():
+def listen_to_slave(port):
     s = socket.socket()
-    port = 8088
     s.bind(('', port))
     print("Socketis binded to ",port)
     s.listen(5)

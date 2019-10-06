@@ -1,5 +1,7 @@
 import comm_m
 from time import  gmtime
+import threading
+
 #1 Listen to all the Joining Slaves
 #2 Log Slaves
 #3 Divide the Work for the slaves
@@ -15,6 +17,18 @@ def add_time(t1,t2):
      t3[0] = ( t1[0] + t2[0] ) + ((t1[1] + t2[1])//60)
      return t3
 
+flags = [True,True]
+def sync_time():
+    port = 8080
+    n = 0
+    while flags[0]==True:
+        addr=comm_m.listen_to_slave(port+n)
+        n = (n+1) % 5
+        msg=gmtime()
+        msg=[msg[4],msg[5]]
+        print("Sending Time: "+ str(msg) +" to "+str(addr))
+        comm_m.send_message_to_slave(str(msg),addr)
+    return
 
 
 #1 Listen to all the Joining Slaves
@@ -23,7 +37,7 @@ bool  = True
 N = n = 3
 
 while bool==True:
-    log.append(comm_m.listen_to_slave())
+    log.append(comm_m.listen_to_slave(8088))
     n -= 1
     if n == 0:
         bool = False
@@ -59,10 +73,16 @@ for x in log:
     comm_m.send_message_to_slave(str(i)+str(msg[i]), x)
     i += 1
 
-#4 Sub Step: Executing Master's Job
+#4 Sub Step 1: Syncronize Clocks
+th1 = threading.Thread(target=sync_time)
+th1.start()
+
+#4 Sub Step 2: Executing Master's Job
 
 
 #5  Evaluate the Result
 
+th1.join()
 
 #6 Log Slaves Out
+log = []
