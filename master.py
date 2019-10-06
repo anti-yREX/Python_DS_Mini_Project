@@ -1,5 +1,5 @@
 import comm_m
-from time import  gmtime
+from time import gmtime
 import threading
 
 #1 Listen to all the Joining Slaves
@@ -22,19 +22,25 @@ def sync_time():
     port = 8080
     n = 0
     while flags[0]==True:
-        addr=comm_m.listen_to_slave(port+n)
+        try:
+            addr=comm_m.listen_to_slave(port+n)
+        except:
+            print("No Slaves available")
+            continue
         n = (n+1) % 5
         msg=gmtime()
         msg=[msg[4],msg[5]]
         print("Sending Time: "+ str(msg) +" to "+str(addr))
         comm_m.send_message_to_slave(str(msg),addr)
+        
+    print("while ended 2")
     return
 
 
 #1 Listen to all the Joining Slaves
 log = []
 bool  = True
-N = n = 3
+N = n = 1
 
 while bool==True:
     log.append(comm_m.listen_to_slave(8088))
@@ -52,7 +58,7 @@ msg = []
 c_t = gmtime()
 c_tm = [c_t[4], c_t[5]]
 print(c_tm)
-x=11
+x=4
 ex_tm = [0, 5]
 ex_tm = add_time(c_tm,ex_tm)
 msg.append(ex_tm)
@@ -81,8 +87,18 @@ th1.start()
 
 
 #5  Evaluate the Result
-
+bool = True
+n=N
+while bool==True:
+    msg = comm_m.recieve_result_from_slave(('127.0.0.1',8088))
+    print(msg)
+    n -= 1
+    if n == 0:
+        flags[0]=False
+        bool = False
+print(flags)
 th1.join()
+
 
 #6 Log Slaves Out
 log = []

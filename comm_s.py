@@ -20,4 +20,10 @@ def listen_to_master(addrs):
     c.close()
     s.close()
     return data
- 
+
+def send_result_to_master(msg,addr):
+    s = socket.socket()
+    s.connect((addr))
+    s.send(msg.encode())
+    s.close()
+    return

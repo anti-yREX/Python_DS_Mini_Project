@@ -78,7 +78,3 @@ def decode_time(msg):
 tm = decode_time(msg)
 print(tm)
 """
-from time import gmtime
-msg=gmtime()
-msg=[msg[4],msg[5]]
-print(msg)
