@@ -40,7 +40,7 @@ def sync_time():
 #1 Listen to all the Joining Slaves
 log = []
 bool  = True
-N = n = 1
+N = n = 3
 
 while bool==True:
     log.append(comm_m.listen_to_slave(8088))
