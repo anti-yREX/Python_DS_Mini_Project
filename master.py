@@ -18,22 +18,19 @@ def add_time(t1,t2):
      return t3
 
 flags = [True,True]
-def sync_time():
-    port = 8080
-    n = 0
+def sync_time(port):
     while flags[0]==True:
         try:
-            addr=comm_m.listen_to_slave(port+n)
+            addr=comm_m.listen_to_slave(port)
         except:
             print("No Slaves available")
             continue
-        n = (n+1) % 5
         msg=gmtime()
         msg=[msg[4],msg[5]]
         print("Sending Time: "+ str(msg) +" to "+str(addr))
         comm_m.send_message_to_slave(str(msg),addr)
         
-    print("while ended 2")
+    print("Time Sync at "+str(port)+" ended.")
     return
 
 
@@ -58,7 +55,7 @@ msg = []
 c_t = gmtime()
 c_tm = [c_t[4], c_t[5]]
 print(c_tm)
-x=4
+x=3
 ex_tm = [0, 5]
 ex_tm = add_time(c_tm,ex_tm)
 msg.append(ex_tm)
@@ -80,11 +77,12 @@ for x in log:
     i += 1
 
 #4 Sub Step 1: Syncronize Clocks
-th1 = threading.Thread(target=sync_time)
-th1.start()
-
-#4 Sub Step 2: Executing Master's Job
-
+th =  []
+for i  in range(0,5):
+    port = 8080+i
+    t = threading.Thread(target=sync_time,args=[port])
+    th.append(t)
+    th[len(th)-1].start()
 
 #5  Evaluate the Result
 bool = True
@@ -97,7 +95,8 @@ while bool==True:
         flags[0]=False
         bool = False
 print(flags)
-th1.join()
+for i in th:
+    i.join()
 
 
 #6 Log Slaves Out
