@@ -53,7 +53,8 @@ def wait_for_time(ex_tm):
             bool = False
 
 #1 Join the master - Login
-addr = comm_s.send_message_to_master(8088)
+addrs = ('192.168.43.196',8088)
+addr = comm_s.send_message_to_master(addrs)
 
 #2 Recieve the command
 msg = comm_s.listen_to_master(addr)
