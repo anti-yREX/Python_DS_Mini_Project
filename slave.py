@@ -41,10 +41,10 @@ def wait_for_time(ex_tm):
     while bool==True:
         try:
             print("Trying Port "+str(port+n))
-            addr = comm_s.send_message_to_master(port+n)
+            addr = comm_s.send_message_to_master(('192.168.43.196',port+n))
         except:
             print("Port "+ str(port+n) +" is Busy.")
-            n = (n+1) % 5
+            n = (n+1) % 3
             continue
         msg = comm_s.listen_to_master(addr)
         tm = decode_time(msg)
@@ -74,7 +74,7 @@ end_tm = [end_tm[4], end_tm[5]]
 
 
 #4 Return the Result
-comm_s.send_result_to_master(str(id)+" "+str(strt_tm)+" "+str(end_tm),('127.0.0.1',8088))
+comm_s.send_result_to_master(str(id)+" "+str(strt_tm)+" "+str(end_tm),('192.168.43.196',8088))
 print(str(strt_tm)+" "+str(end_tm))
 
 #5 Log out
