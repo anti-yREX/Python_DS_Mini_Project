@@ -37,7 +37,7 @@ def sync_time(port):
 #1 Listen to all the Joining Slaves
 log = []
 bool  = True
-N = n = 3
+N = n = 2
 
 while bool==True:
     log.append(comm_m.listen_to_slave(8088))
@@ -78,7 +78,7 @@ for x in log:
 
 #4 Sub Step 1: Syncronize Clocks
 th =  []
-for i  in range(0,5):
+for i  in range(0,N):
     port = 8080+i
     t = threading.Thread(target=sync_time,args=[port])
     th.append(t)
@@ -88,7 +88,7 @@ for i  in range(0,5):
 bool = True
 n=N
 while bool==True:
-    msg = comm_m.recieve_result_from_slave(('127.0.0.1',8088))
+    msg = comm_m.recieve_result_from_slave(('',8088))
     print(msg)
     n -= 1
     if n == 0:

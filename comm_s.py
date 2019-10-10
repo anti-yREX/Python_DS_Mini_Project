@@ -1,7 +1,7 @@
 import socket
-def send_message_to_master(port):
+def send_message_to_master(addr):
     s = socket.socket()
-    s.connect(('127.0.0.1' , port))
+    s.connect(addr)
     data = s.recv(1024).decode('utf8')
     print(data)
     addr = s.getsockname()
