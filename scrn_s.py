@@ -6,7 +6,7 @@ def initiate(id):
 
 def animate(win):
     cir = Circle(Point(425,225),25)
-    cir.setFill("#000000")
+    cir.setFill("#2771c4")
     cir.setOutline("#000000")
     cir.draw(win)
     n = 425
@@ -34,7 +34,7 @@ def animate(win):
             continue
 
     cir = Circle(Point(425,225),25)
-    cir.setFill("#000000")
+    cir.setFill("#2771c4")
     cir.setOutline("#000000")
     cir.draw(win)
     n = 425
