@@ -55,7 +55,7 @@ msg = []
 c_t = gmtime()
 c_tm = [c_t[4], c_t[5]]
 print(c_tm)
-x=3
+x=5
 ex_tm = [0, 5]
 ex_tm = add_time(c_tm,ex_tm)
 msg.append(ex_tm)
